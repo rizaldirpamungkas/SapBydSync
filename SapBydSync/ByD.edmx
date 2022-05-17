@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ByD_BackDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="gen_ledger">
+          <Key>
+            <PropertyRef Name="_uid" />
+          </Key>
+          <Property Name="_uid" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="created_date" Type="date" />
+          <Property Name="changed_date" Type="date" />
+          <Property Name="jour_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="jour_item_id" Type="nvarchar" MaxLength="50" />
+          <Property Name="jour_type" Type="nvarchar" MaxLength="20" />
+          <Property Name="bus_part_addr" Type="nvarchar" MaxLength="300" />
+          <Property Name="chart_of_act" Type="nvarchar" MaxLength="20" />
+          <Property Name="cus_code1" Type="nvarchar" MaxLength="50" />
+          <Property Name="cus_code2" Type="nvarchar" MaxLength="50" />
+          <Property Name="cus_code3" Type="nvarchar" MaxLength="50" />
+          <Property Name="debit_credit" Type="int" />
+          <Property Name="employee_id" Type="nvarchar" MaxLength="50" />
+          <Property Name="fiscal_year" Type="int" />
+          <Property Name="gl_acct" Type="nvarchar" MaxLength="15" />
+          <Property Name="gl_acct_type" Type="nvarchar" MaxLength="20" />
+          <Property Name="post_date" Type="date" />
+          <Property Name="prod_id" Type="nvarchar" MaxLength="50" />
+          <Property Name="comp_cur_amt" Type="bigint" />
+          <Property Name="item_cur_amt" Type="bigint" />
+          <Property Name="tran_cur_amt" Type="bigint" />
+          <Property Name="val_qty_unt" Type="bigint" />
+        </EntityType>
+        <EntityType Name="journal">
+          <Key>
+            <PropertyRef Name="jour_id" />
+          </Key>
+          <Property Name="_uid" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="jour_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="created_date" Type="date" />
+          <Property Name="changed_date" Type="date" />
+          <Property Name="debit_credit" Type="int" />
+          <Property Name="fiscal_year" Type="int" />
+          <Property Name="gl_acct" Type="nvarchar" MaxLength="15" />
+          <Property Name="gl_acct_type" Type="nvarchar" MaxLength="20" />
+          <Property Name="created_by" Type="nvarchar" MaxLength="100" />
+          <Property Name="changed_by" Type="nvarchar" MaxLength="100" />
+          <Property Name="comp_cur_amt" Type="bigint" />
+          <Property Name="item_cur_amt" Type="bigint" />
+          <Property Name="tran_cur_amt" Type="bigint" />
+        </EntityType>
+        <Association Name="FK_JourId_Journal_JourId">
+          <End Role="journal" Type="Self.journal" Multiplicity="1" />
+          <End Role="gen_ledger" Type="Self.gen_ledger" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="journal">
+              <PropertyRef Name="jour_id" />
+            </Principal>
+            <Dependent Role="gen_ledger">
+              <PropertyRef Name="jour_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ByD_BackDbModelStoreContainer">
+          <EntitySet Name="gen_ledger" EntityType="Self.gen_ledger" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="journal" EntityType="Self.journal" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_JourId_Journal_JourId" Association="Self.FK_JourId_Journal_JourId">
+            <End Role="journal" EntitySet="journal" />
+            <End Role="gen_ledger" EntitySet="gen_ledger" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ByD_BackDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="journal">
+          <Key>
+            <PropertyRef Name="jour_id" />
+          </Key>
+          <Property Name="C_uid" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="jour_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="created_date" Type="DateTime" Precision="0" />
+          <Property Name="changed_date" Type="DateTime" Precision="0" />
+          <Property Name="debit_credit" Type="Int32" />
+          <Property Name="fiscal_year" Type="Int32" />
+          <Property Name="gl_acct" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="gl_acct_type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="created_by" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="changed_by" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="comp_cur_amt" Type="Int64" />
+          <Property Name="item_cur_amt" Type="Int64" />
+          <Property Name="tran_cur_amt" Type="Int64" />
+          <NavigationProperty Name="gen_ledger" Relationship="Self.FK_JourId_Journal_JourId" FromRole="journal" ToRole="gen_ledger" />
+        </EntityType>
+        <EntityType Name="gen_ledger">
+          <Key>
+            <PropertyRef Name="C_uid" />
+          </Key>
+          <Property Name="created_date" Type="DateTime" Precision="0" />
+          <Property Name="changed_date" Type="DateTime" Precision="0" />
+          <Property Name="jour_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="jour_item_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="jour_type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="bus_part_addr" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="chart_of_act" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="cus_code1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cus_code2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cus_code3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="debit_credit" Type="Int32" />
+          <Property Name="employee_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fiscal_year" Type="Int32" />
+          <Property Name="gl_acct" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="gl_acct_type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="post_date" Type="DateTime" Precision="0" />
+          <Property Name="prod_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="comp_cur_amt" Type="Int64" />
+          <Property Name="item_cur_amt" Type="Int64" />
+          <Property Name="tran_cur_amt" Type="Int64" />
+          <Property Name="val_qty_unt" Type="Int64" />
+          <NavigationProperty Name="journal" Relationship="Self.FK_JourId_Journal_JourId" FromRole="gen_ledger" ToRole="journal" />
+          <Property Name="C_uid" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_JourId_Journal_JourId">
+          <End Role="journal" Type="Self.journal" Multiplicity="1" />
+          <End Role="gen_ledger" Type="Self.gen_ledger" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="journal">
+              <PropertyRef Name="jour_id" />
+            </Principal>
+            <Dependent Role="gen_ledger">
+              <PropertyRef Name="jour_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ByD_BackDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="journals" EntityType="Self.journal" />
+          <EntitySet Name="gen_ledger" EntityType="Self.gen_ledger" />
+          <AssociationSet Name="FK_JourId_Journal_JourId" Association="Self.FK_JourId_Journal_JourId">
+            <End Role="journal" EntitySet="journals" />
+            <End Role="gen_ledger" EntitySet="gen_ledger" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ByD_BackDbModelStoreContainer" CdmEntityContainer="ByD_BackDbEntities">
+          <EntitySetMapping Name="journals">
+            <EntityTypeMapping TypeName="ByD_BackDbModel.journal">
+              <MappingFragment StoreEntitySet="journal">
+                <ScalarProperty Name="C_uid" ColumnName="_uid" />
+                <ScalarProperty Name="jour_id" ColumnName="jour_id" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="changed_date" ColumnName="changed_date" />
+                <ScalarProperty Name="debit_credit" ColumnName="debit_credit" />
+                <ScalarProperty Name="fiscal_year" ColumnName="fiscal_year" />
+                <ScalarProperty Name="gl_acct" ColumnName="gl_acct" />
+                <ScalarProperty Name="gl_acct_type" ColumnName="gl_acct_type" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="changed_by" ColumnName="changed_by" />
+                <ScalarProperty Name="comp_cur_amt" ColumnName="comp_cur_amt" />
+                <ScalarProperty Name="item_cur_amt" ColumnName="item_cur_amt" />
+                <ScalarProperty Name="tran_cur_amt" ColumnName="tran_cur_amt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gen_ledger">
+            <EntityTypeMapping TypeName="ByD_BackDbModel.gen_ledger">
+              <MappingFragment StoreEntitySet="gen_ledger">
+                <ScalarProperty Name="C_uid" ColumnName="_uid" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="changed_date" ColumnName="changed_date" />
+                <ScalarProperty Name="jour_id" ColumnName="jour_id" />
+                <ScalarProperty Name="jour_item_id" ColumnName="jour_item_id" />
+                <ScalarProperty Name="jour_type" ColumnName="jour_type" />
+                <ScalarProperty Name="bus_part_addr" ColumnName="bus_part_addr" />
+                <ScalarProperty Name="chart_of_act" ColumnName="chart_of_act" />
+                <ScalarProperty Name="cus_code1" ColumnName="cus_code1" />
+                <ScalarProperty Name="cus_code2" ColumnName="cus_code2" />
+                <ScalarProperty Name="cus_code3" ColumnName="cus_code3" />
+                <ScalarProperty Name="debit_credit" ColumnName="debit_credit" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="fiscal_year" ColumnName="fiscal_year" />
+                <ScalarProperty Name="gl_acct" ColumnName="gl_acct" />
+                <ScalarProperty Name="gl_acct_type" ColumnName="gl_acct_type" />
+                <ScalarProperty Name="post_date" ColumnName="post_date" />
+                <ScalarProperty Name="prod_id" ColumnName="prod_id" />
+                <ScalarProperty Name="comp_cur_amt" ColumnName="comp_cur_amt" />
+                <ScalarProperty Name="item_cur_amt" ColumnName="item_cur_amt" />
+                <ScalarProperty Name="tran_cur_amt" ColumnName="tran_cur_amt" />
+                <ScalarProperty Name="val_qty_unt" ColumnName="val_qty_unt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

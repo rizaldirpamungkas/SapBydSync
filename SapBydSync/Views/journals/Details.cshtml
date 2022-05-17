@@ -1,0 +1,122 @@
+﻿@model SapBydSync.journal
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>journal</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.C_uid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.C_uid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.created_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.created_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.changed_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.changed_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.debit_credit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.debit_credit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fiscal_year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fiscal_year)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gl_acct)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gl_acct)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gl_acct_type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gl_acct_type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.created_by)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.created_by)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.changed_by)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.changed_by)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.comp_cur_amt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.comp_cur_amt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.item_cur_amt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.item_cur_amt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tran_cur_amt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tran_cur_amt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gen_ledger.jour_item_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gen_ledger.jour_item_id)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.jour_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

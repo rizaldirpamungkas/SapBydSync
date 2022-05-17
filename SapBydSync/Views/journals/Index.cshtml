@@ -1,0 +1,105 @@
+﻿@model IEnumerable<SapBydSync.journal>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.C_uid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.created_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.changed_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.debit_credit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fiscal_year)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gl_acct)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gl_acct_type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.created_by)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.changed_by)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.comp_cur_amt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.item_cur_amt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tran_cur_amt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gen_ledger.jour_item_id)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.C_uid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.created_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.changed_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.debit_credit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fiscal_year)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gl_acct)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gl_acct_type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.created_by)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.changed_by)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.comp_cur_amt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.item_cur_amt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tran_cur_amt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gen_ledger.jour_item_id)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.jour_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.jour_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.jour_id })
+        </td>
+    </tr>
+}
+
+</table>
