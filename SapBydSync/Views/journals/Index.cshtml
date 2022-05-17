@@ -47,9 +47,6 @@
         <th>
             @Html.DisplayNameFor(model => model.tran_cur_amt)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.gen_ledger.jour_item_id)
-        </th>
         <th></th>
     </tr>
 
@@ -90,9 +87,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.tran_cur_amt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.gen_ledger.jour_item_id)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.jour_id }) |

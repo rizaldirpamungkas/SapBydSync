@@ -17,8 +17,7 @@ namespace SapBydSync.Controllers
         // GET: journals
         public ActionResult Index()
         {
-            var journals = db.journals.Include(j => j.gen_ledger);
-            return View(journals.ToList());
+            return View(db.journals.ToList());
         }
 
         // GET: journals/Details/5
@@ -39,7 +38,6 @@ namespace SapBydSync.Controllers
         // GET: journals/Create
         public ActionResult Create()
         {
-            ViewBag.jour_id = new SelectList(db.gen_ledger, "jour_id", "jour_item_id");
             return View();
         }
 
@@ -57,7 +55,6 @@ namespace SapBydSync.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.jour_id = new SelectList(db.gen_ledger, "jour_id", "jour_item_id", journal.jour_id);
             return View(journal);
         }
 
@@ -73,7 +70,6 @@ namespace SapBydSync.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.jour_id = new SelectList(db.gen_ledger, "jour_id", "jour_item_id", journal.jour_id);
             return View(journal);
         }
 
@@ -90,7 +86,6 @@ namespace SapBydSync.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.jour_id = new SelectList(db.gen_ledger, "jour_id", "jour_item_id", journal.jour_id);
             return View(journal);
         }
 
